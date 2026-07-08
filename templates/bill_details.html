@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Invoice Details</title>
+
+<link rel="stylesheet"
+href="{{ url_for('static', filename='style.css') }}">
+
+<style>
+
+body{
+    background:#eef2f7;
+    font-family:Segoe UI,Arial,sans-serif;
+}
+
+.container{
+    width:95%;
+    max-width:1200px;
+    margin:30px auto;
+    background:white;
+    border-radius:10px;
+    box-shadow:0 10px 30px rgba(0,0,0,.1);
+    overflow:hidden;
+}
+
+.header{
+
+    background:#1f4e79;
+    color:white;
+    padding:30px;
+    text-align:center;
+
+}
+
+.header h1{
+
+    margin:0;
+    font-size:34px;
+
+}
+
+.header h3{
+
+    margin-top:10px;
+    font-weight:normal;
+
+}
+
+.invoice-title{
+
+    background:#0d6efd;
+    color:white;
+    text-align:center;
+    padding:15px;
+    font-size:22px;
+    font-weight:bold;
+
+}
+
+.info{
+
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:25px;
+    padding:30px;
+
+}
+
+.card{
+
+    border:1px solid #ddd;
+    border-radius:8px;
+    padding:20px;
+    background:#fafafa;
+
+}
+
+.card h3{
+
+    color:#1f4e79;
+    margin-bottom:15px;
+
+}
+
+.card p{
+
+    margin:10px 0;
+
+}
+
+table{
+
+    width:95%;
+    margin:auto;
+    border-collapse:collapse;
+
+}
+
+th{
+
+    background:#1f4e79;
+    color:white;
+    padding:14px;
+
+}
+
+td{
+
+    border:1px solid #ddd;
+    padding:12px;
+    text-align:center;
+
+}
+
+tr:nth-child(even){
+
+    background:#f8f9fa;
+
+}
+
+.summary{
+
+    width:350px;
+    margin:30px 40px 30px auto;
+
+}
+
+.summary table{
+
+    width:100%;
+
+}
+
+.summary td{
+
+    text-align:right;
+
+}
+
+.summary tr:last-child{
+
+    background:#1f4e79;
+    color:white;
+    font-weight:bold;
+
+}
+
+.buttons{
+
+    text-align:center;
+    padding:30px;
+
+}
+
+.buttons a,
+.buttons button{
+
+    text-decoration:none;
+    padding:12px 25px;
+    margin:10px;
+    border:none;
+    border-radius:6px;
+    font-size:16px;
+    cursor:pointer;
+    color:white;
+
+}
+
+.download{
+
+    background:#198754;
+
+}
+
+.back{
+
+    background:#0d6efd;
+
+}
+
+.print{
+
+    background:#ff9800;
+
+}
+
+.footer{
+
+    text-align:center;
+    padding:20px;
+    background:#f4f4f4;
+    color:#666;
+
+}
+
+@media(max-width:768px){
+
+.info{
+
+grid-template-columns:1fr;
+
+}
+
+.summary{
+
+width:90%;
+
+}
+
+}
+
+@media print{
+
+.buttons{
+
+display:none;
+
+}
+
+body{
+
+background:white;
+
+}
+
+.container{
+
+box-shadow:none;
+
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="header">
+
+<h1>SHREE SAMARTH KRUPA</h1>
+
+<h3>Brick Manufacturer & Suppliers</h3>
+
+<p>At. Injivali, Tal. Karjat, Dist. Raigad - 410201</p>
+
+<p>Mobile : 9822XXXXXX | 9870XXXXXX</p>
+
+</div>
+
+<div class="invoice-title">
+
+TAX INVOICE
+
+</div>
+
+<div class="info">
+
+<div class="card">
+
+<h3>Customer Details</h3>
+
+<p><b>Name :</b> {{ bill.customer_name }}</p>
+
+<p><b>Address :</b> {{ bill.customer_address }}</p>
+
+</div>
+
+<div class="card">
+
+<h3>Bill Information</h3>
+
+<p><b>Bill No :</b> {{ bill.bill_no }}</p>
+
+<p><b>Date :</b> {{ bill.bill_date }}</p>
+
+<p><b>GST :</b> {{ bill.gst }}%</p>
+
+</div>
+
+</div>
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>Sr.</th>
+<th>Date</th>
+<th>Chalan No.</th>
+<th>Material</th>
+<th>Qty</th>
+<th>Rate</th>
+<th>Amount</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+{% for item in items %}
+
+<tr>
+
+<td>{{ loop.index }}</td>
+
+<td>{{ item.item_date }}</td>
+
+<td>{{ item.chalan_no }}</td>
+
+<td>{{ item.material }}</td>
+
+<td>{{ item.quantity }}</td>
+
+<td>₹ {{ "%.2f"|format(item.price) }}</td>
+
+<td>₹ {{ "%.2f"|format(item.total) }}</td>
+
+</tr>
+
+{% endfor %}
+
+</tbody>
+
+</table>
+
+<div class="summary">
+
+<table>
+
+<tr>
+
+<td><b>Discount</b></td>
+
+<td>₹ {{ "%.2f"|format(bill.discount) }}</td>
+
+</tr>
+
+<tr>
+
+<td><b>GST</b></td>
+
+<td>{{ bill.gst }}%</td>
+
+</tr>
+
+<tr>
+
+<td><b>Grand Total</b></td>
+
+<td>₹ {{ "%.2f"|format(bill.grand_total) }}</td>
+
+</tr>
+
+</table>
+
+</div>
+
+<div class="buttons">
+
+<a href="/download_pdf/{{ bill.id }}" class="download">
+
+Download PDF
+
+</a>
+
+<button class="print" onclick="window.print()">
+
+Print Invoice
+
+</button>
+
+<a href="/history" class="back">
+
+Back to History
+
+</a>
+
+</div>
+
+<div class="footer">
+
+Thank You For Your Business ❤️
+
+</div>
+
+</div>
+
+</body>
+
+</html>

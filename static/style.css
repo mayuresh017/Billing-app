@@ -1,0 +1,678 @@
+/* ===========================
+   GOOGLE FONT
+=========================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+/* ===========================
+   GLOBAL
+=========================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    background:#eef2f7;
+    padding:30px;
+}
+
+/* ===========================
+   MAIN CONTAINER
+=========================== */
+
+.container{
+
+    width:95%;
+    max-width:1400px;
+
+    margin:auto;
+
+    background:#ffffff;
+
+    border-radius:12px;
+
+    padding:35px;
+
+    box-shadow:0 10px 25px rgba(0,0,0,.12);
+
+}
+
+/* ===========================
+   HEADER
+=========================== */
+
+.bill-header{
+
+    text-align:center;
+
+    padding-bottom:20px;
+
+    border-bottom:3px solid #0d6efd;
+
+    margin-bottom:30px;
+
+}
+
+.bill-header h1{
+
+    font-size:38px;
+
+    color:#0d47a1;
+
+    letter-spacing:2px;
+
+    font-weight:700;
+
+}
+
+.bill-header h3{
+
+    color:#444;
+
+    margin-top:8px;
+
+    font-size:22px;
+
+    font-weight:500;
+
+}
+
+.bill-header p{
+
+    color:#666;
+
+    margin-top:5px;
+
+    font-size:15px;
+
+}
+
+/* ===========================
+   CUSTOMER & BILL SECTION
+=========================== */
+
+.customer-section,
+.invoice-section{
+
+    display:grid;
+
+    grid-template-columns:repeat(2,1fr);
+
+    gap:25px;
+
+    margin-bottom:25px;
+
+}
+
+.customer-section div,
+.invoice-section div{
+
+    background:#f9fbfd;
+
+    padding:18px;
+
+    border-radius:10px;
+
+    border:1px solid #d9e3f0;
+
+}
+
+label{
+
+    display:block;
+
+    font-weight:600;
+
+    color:#333;
+
+    margin-bottom:8px;
+
+}
+
+/* ===========================
+   INPUTS
+=========================== */
+
+input,
+select,
+textarea{
+
+    width:100%;
+
+    padding:12px 15px;
+
+    border:1px solid #cfd8dc;
+
+    border-radius:8px;
+
+    font-size:15px;
+
+    transition:.3s;
+
+    outline:none;
+
+    background:#fff;
+
+}
+
+input:focus,
+select:focus,
+textarea:focus{
+
+    border-color:#0d6efd;
+
+    box-shadow:0 0 8px rgba(13,110,253,.25);
+
+}
+
+/* ===========================
+   GST SECTION
+=========================== */
+
+.extra-details{
+
+    display:flex;
+
+    justify-content:flex-end;
+
+    gap:15px;
+
+    margin:20px 0 30px;
+
+}
+
+.extra-details input,
+.extra-details select{
+
+    width:180px;
+
+}
+
+/* ===========================
+   ITEM ENTRY
+=========================== */
+
+.item-form{
+
+    display:grid;
+
+    grid-template-columns:
+
+    150px
+    150px
+    1.8fr
+    100px
+    120px
+    150px;
+
+    gap:15px;
+
+    align-items:end;
+
+    margin-bottom:30px;
+
+}
+
+/* ===========================
+   BUTTON
+=========================== */
+
+#addBtn{
+
+    background:#0d6efd;
+
+    color:white;
+
+    border:none;
+
+    padding:13px;
+
+    border-radius:8px;
+
+    font-size:15px;
+
+    cursor:pointer;
+
+    font-weight:600;
+
+    transition:.3s;
+
+}
+
+#addBtn:hover{
+
+    background:#0b5ed7;
+
+    transform:translateY(-2px);
+
+}
+
+/* ===========================
+   TABLE
+=========================== */
+
+table{
+
+    width:100%;
+
+    border-collapse:collapse;
+
+    margin-top:20px;
+
+    border-radius:10px;
+
+    overflow:hidden;
+
+}
+
+table th{
+
+    background:#0d47a1;
+
+    color:white;
+
+    padding:14px;
+
+    font-size:15px;
+
+}
+
+table td{
+
+    padding:12px;
+
+    text-align:center;
+
+    border-bottom:1px solid #e5e5e5;
+
+    font-size:14px;
+
+}
+
+table tr:nth-child(even){
+
+    background:#f8f9fa;
+
+}
+
+table tr:hover{
+
+    background:#eef5ff;
+
+}
+
+/* ===========================
+   DELETE BUTTON
+=========================== */
+
+.deleteBtn{
+
+    background:#dc3545;
+
+    color:white;
+
+    border:none;
+
+    padding:8px 14px;
+
+    border-radius:5px;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+.deleteBtn:hover{
+
+    background:#bb2d3b;
+
+}
+
+/* ===========================
+   SUMMARY
+=========================== */
+
+.summary{
+
+    width:380px;
+
+    margin-top:35px;
+
+    margin-left:auto;
+
+    border-radius:10px;
+
+    overflow:hidden;
+
+    border:1px solid #d8d8d8;
+
+    box-shadow:0 4px 12px rgba(0,0,0,.08);
+
+}
+
+.summary p,
+.summary h2{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    padding:15px 20px;
+
+}
+
+.summary p{
+
+    border-bottom:1px solid #eee;
+
+}
+
+.summary h2{
+
+    background:#0d47a1;
+
+    color:white;
+
+    font-size:22px;
+
+}
+
+/* ===========================
+   AMOUNT WORDS
+=========================== */
+
+.amount-words{
+
+    margin-top:35px;
+
+}
+
+.amount-words textarea{
+
+    height:80px;
+
+}
+
+/* ===========================
+   BUTTON SECTION
+=========================== */
+
+.buttons{
+
+    text-align:center;
+
+    margin-top:35px;
+
+}
+
+.buttons button{
+
+    padding:14px 35px;
+
+    margin:10px;
+
+    border:none;
+
+    border-radius:8px;
+
+    font-size:16px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+#saveBtn{
+
+    background:#198754;
+
+    color:white;
+
+}
+
+#saveBtn:hover{
+
+    background:#157347;
+
+}
+
+#clearBtn{
+
+    background:#dc3545;
+
+    color:white;
+
+}
+
+#clearBtn:hover{
+
+    background:#bb2d3b;
+
+}
+
+/* ===========================
+   SIGNATURE
+=========================== */
+
+.signature{
+
+    margin-top:70px;
+
+    text-align:right;
+
+}
+
+.signature p{
+
+    display:inline-block;
+
+    width:220px;
+
+    text-align:center;
+
+    border-top:2px solid #000;
+
+    padding-top:10px;
+
+    font-weight:600;
+
+}
+
+/* ===========================
+   RESPONSIVE
+=========================== */
+
+@media(max-width:1100px){
+
+.item-form{
+
+grid-template-columns:repeat(2,1fr);
+
+}
+
+.customer-section,
+.invoice-section{
+
+grid-template-columns:1fr;
+
+}
+
+.summary{
+
+width:100%;
+
+}
+
+}
+
+@media(max-width:700px){
+
+.item-form{
+
+grid-template-columns:1fr;
+
+}
+
+.extra-details{
+
+flex-direction:column;
+
+}
+
+.extra-details input,
+.extra-details select{
+
+width:100%;
+
+}
+
+.buttons button{
+
+width:100%;
+
+margin:8px 0;
+
+}
+
+}
+
+/* ===========================
+   PRINT
+=========================== */
+
+@media print{
+
+body{
+
+background:white;
+
+padding:0;
+
+}
+
+.container{
+
+box-shadow:none;
+
+border:none;
+
+width:100%;
+
+padding:10px;
+
+}
+
+.buttons,
+.item-form,
+.deleteBtn{
+
+display:none;
+
+}
+
+table{
+
+font-size:12px;
+
+}
+
+.summary{
+
+box-shadow:none;
+
+border:1px solid black;
+
+}
+
+}
+
+/* ===== Professional Enhancements ===== */
+.container{border:1px solid #dbe5f1}
+input:hover,select:hover,textarea:hover{border-color:#0d6efd}
+input[readonly]{background:#f3f6fb;font-weight:600}
+table th{position:sticky;top:0}
+table td:last-child{white-space:nowrap}
+.summary{background:#fff}
+.summary span{font-weight:700}
+#grandTotal{color:white;font-weight:700}
+button{transition:.25s ease}
+button:hover{box-shadow:0 6px 16px rgba(13,110,253,.2)}
+.table-responsive{
+    width:100%;
+    overflow-x:auto;
+}
+
+.customer-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:20px;
+}
+
+@media(max-width:768px){
+
+.navbar{
+    flex-direction:column;
+    gap:15px;
+    text-align:center;
+}
+
+.menu{
+    display:flex;
+    flex-direction:column;
+    width:100%;
+}
+
+.menu a{
+    width:100%;
+}
+
+.customer-grid{
+    grid-template-columns:1fr;
+}
+
+.extra-details{
+    flex-direction:column;
+}
+
+.item-form{
+    grid-template-columns:1fr;
+}
+
+.summary{
+    width:100%;
+}
+
+.buttons{
+    display:flex;
+    flex-direction:column;
+}
+
+.buttons button{
+    width:100%;
+}
+
+.bill-header h1{
+    font-size:28px;
+}
+
+.bill-header h3{
+    font-size:18px;
+}
+
+.container{
+    padding:15px;
+}
+
+table{
+    min-width:900px;
+}
+
+}

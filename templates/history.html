@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Bill History</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+<style>
+
+body{
+    background:#eef2f7;
+    font-family:Arial,Helvetica,sans-serif;
+}
+
+.history-container{
+
+    width:95%;
+    margin:30px auto;
+    background:white;
+    padding:30px;
+    border-radius:10px;
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+
+}
+
+.header{
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    flex-wrap:wrap;
+    margin-bottom:25px;
+
+}
+
+.header h1{
+
+    color:#1f3c88;
+    font-size:30px;
+
+}
+
+.top-buttons{
+
+    display:flex;
+    gap:10px;
+
+}
+
+.btn{
+
+    padding:10px 18px;
+    border-radius:6px;
+    color:white;
+    text-decoration:none;
+    font-weight:bold;
+
+}
+
+.home{
+    background:#34495e;
+}
+
+.home:hover{
+    background:#2c3e50;
+}
+
+.search-box{
+
+    margin:20px 0;
+
+}
+
+.search-box input{
+
+    width:100%;
+    padding:12px;
+    border:1px solid #ccc;
+    border-radius:6px;
+    font-size:15px;
+
+}
+
+table{
+
+    width:100%;
+    border-collapse:collapse;
+    overflow:hidden;
+
+}
+
+thead{
+
+    background:#1f3c88;
+    color:white;
+
+}
+
+th{
+
+    padding:14px;
+    position:sticky;
+    top:0;
+
+}
+
+td{
+
+    padding:12px;
+    border-bottom:1px solid #eee;
+    text-align:center;
+
+}
+
+tbody tr:hover{
+
+    background:#f3f8ff;
+
+}
+
+.action-btn{
+
+    padding:8px 14px;
+    border-radius:5px;
+    color:white;
+    text-decoration:none;
+    margin:2px;
+    display:inline-block;
+    font-size:14px;
+
+}
+
+.download{
+    background:#27ae60;
+}
+
+.download:hover{
+    background:#1f8b4d;
+}
+
+.view{
+    background:#2980b9;
+}
+
+.view:hover{
+    background:#216694;
+}
+
+.delete{
+    background:#e74c3c;
+}
+
+.delete:hover{
+    background:#c0392b;
+}
+
+.total{
+
+    margin-bottom:15px;
+    font-weight:bold;
+    color:#555;
+
+}
+
+.empty{
+
+    text-align:center;
+    color:#777;
+    padding:30px;
+
+}
+
+@media(max-width:900px){
+
+table{
+
+display:block;
+overflow-x:auto;
+
+}
+
+.header{
+
+flex-direction:column;
+align-items:flex-start;
+gap:15px;
+
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="history-container">
+
+<div class="header">
+
+<div>
+
+<h1>📑 Billing History</h1>
+
+<div class="total">
+
+Total Bills :
+<strong>{{ bills|length }}</strong>
+
+</div>
+
+</div>
+
+<div class="top-buttons">
+
+<a href="/" class="btn home">
+🏠 New Bill
+</a>
+
+</div>
+
+</div>
+
+<div class="search-box">
+
+<input
+type="text"
+id="search"
+placeholder="Search by Bill No or Customer Name...">
+
+</div>
+
+<table id="historyTable">
+
+<thead>
+
+<tr>
+
+<th>ID</th>
+
+<th>Bill No</th>
+
+<th>Date</th>
+
+<th>Customer</th>
+
+<th>Address</th>
+
+<th>Total</th>
+
+<th>Actions</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+{% if bills %}
+
+{% for bill in bills %}
+
+<tr>
+
+<td>{{ bill.id }}</td>
+
+<td>{{ bill.bill_no }}</td>
+
+<td>{{ bill.bill_date }}</td>
+
+<td>{{ bill.customer_name }}</td>
+
+<td>{{ bill.customer_address }}</td>
+
+<td>
+
+₹ {{ "%.2f"|format(bill.grand_total) }}
+
+</td>
+
+<td>
+
+<a href="/download_pdf/{{ bill.id }}"
+class="action-btn download">
+
+⬇ PDF
+
+</a>
+
+<a href="/bill/{{ bill.id }}"
+class="action-btn view">
+
+👁 View
+
+</a>
+
+<a href="/delete_bill/{{ bill.id }}"
+class="action-btn delete"
+onclick="return confirm('Delete this bill?')">
+
+🗑 Delete
+
+</a>
+
+</td>
+
+</tr>
+
+{% endfor %}
+
+{% else %}
+
+<tr>
+
+<td colspan="7" class="empty">
+
+No Bills Found
+
+</td>
+
+</tr>
+
+{% endif %}
+
+</tbody>
+
+</table>
+
+</div>
+
+<script>
+
+const search=document.getElementById("search");
+
+search.addEventListener("keyup",function(){
+
+let filter=this.value.toUpperCase();
+
+let rows=document.querySelectorAll("#historyTable tbody tr");
+
+rows.forEach(function(row){
+
+let text=row.innerText.toUpperCase();
+
+row.style.display=text.includes(filter)?"":"none";
+
+});
+
+});
+
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Billing Management System</title>
+
+<link rel="stylesheet"
+href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+<!-- ================= NAVBAR ================= -->
+
+<nav class="navbar">
+
+    <div class="logo">
+        <h2>SHREE SAMARTH KRUPA</h2>
+    </div>
+
+    <div class="menu">
+        <a href="/">New Bill</a>
+        <a href="/history">Bill History</a>
+    </div>
+
+</nav>
+
+<div class="container">
+
+<!-- ================= HEADER ================= -->
+
+<header class="bill-header">
+
+<h1>SHREE SAMARTH KRUPA</h1>
+
+<h3>Brick Manufacturer & Suppliers</h3>
+
+<p>At. Injivali, Tal. Karjat, Dist. Raigad - 410201</p>
+
+<p>Mob : 9822XXXXXX | 9870XXXXXX</p>
+
+</header>
+
+<div class="invoice-title">
+
+<h2>TAX INVOICE</h2>
+
+</div>
+
+<!-- ================= CUSTOMER DETAILS ================= -->
+
+<section class="customer-grid">
+
+<div>
+
+<label>Customer Name</label>
+
+<input
+type="text"
+id="customer"
+placeholder="Enter Customer Name">
+
+</div>
+
+<div>
+
+<label>Customer Address</label>
+
+<input
+type="text"
+id="address"
+placeholder="Enter Customer Address">
+
+</div>
+
+<div>
+
+<label>Bill Number</label>
+
+<input
+type="text"
+id="billNo"
+readonly>
+
+</div>
+
+<div>
+
+<label>Bill Date</label>
+
+<input
+type="date"
+id="billDate">
+
+</div>
+
+</section>
+
+<!-- ================= GST ================= -->
+
+<section class="extra-details">
+
+<div>
+
+<label>Discount (₹)</label>
+
+<input
+type="number"
+id="discount"
+value="0">
+
+</div>
+
+<div>
+
+<label>GST (%)</label>
+
+<select id="gst">
+
+<option value="0">0%</option>
+<option value="5">5%</option>
+<option value="12">12%</option>
+<option value="18">18%</option>
+<option value="28">28%</option>
+
+</select>
+
+</div>
+
+</section>
+
+<!-- ================= ITEM ENTRY ================= -->
+
+<section class="item-form">
+
+<input
+type="date"
+id="itemDate">
+
+<input
+type="text"
+id="chalan"
+placeholder="Chalan No">
+
+<input
+type="text"
+id="material"
+placeholder="Material Name">
+
+<input
+type="number"
+id="qty"
+placeholder="Quantity">
+
+<input
+type="number"
+id="price"
+placeholder="Rate">
+
+<button id="addBtn">
+
+➕ Add Item
+
+</button>
+
+</section>
+
+<!-- ================= SEARCH ================= -->
+
+<div class="top-actions">
+
+<input
+type="text"
+id="search"
+placeholder="🔍 Search Material">
+
+</div>
+
+<!-- ================= TABLE ================= -->
+
+<div class="table-responsive">
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>Sr</th>
+
+<th>Date</th>
+
+<th>Chalan</th>
+
+<th>Material</th>
+
+<th>Qty</th>
+
+<th>Rate</th>
+
+<th>Amount</th>
+
+<th>Delete</th>
+
+</tr>
+
+</thead>
+
+<tbody id="billTable">
+
+</tbody>
+
+</table>
+
+</div>
+
+<!-- ================= SUMMARY ================= -->
+
+<div class="summary">
+
+<p>
+
+<span>Subtotal</span>
+
+<span>₹ <span id="subtotal">0.00</span></span>
+
+</p>
+
+<p>
+
+<span>Discount</span>
+
+<span>₹ <span id="discountValue">0.00</span></span>
+
+</p>
+
+<p>
+
+<span>GST</span>
+
+<span>₹ <span id="gstValue">0.00</span></span>
+
+</p>
+
+<h2>
+
+<span>Grand Total</span>
+
+<span>₹ <span id="grandTotal">0.00</span></span>
+
+</h2>
+
+</div>
+
+<!-- ================= AMOUNT WORDS ================= -->
+
+<section class="amount-words">
+
+<label>Amount In Words</label>
+
+<textarea
+id="amountWords"
+readonly></textarea>
+
+</section>
+
+<!-- ================= BUTTONS ================= -->
+
+<div class="buttons">
+
+<button id="clearBtn">
+
+🗑 Clear Bill
+
+</button>
+
+<button id="saveBtn">
+
+💾 Save & Download PDF
+
+</button>
+
+</div>
+
+<!-- ================= SIGNATURE ================= -->
+
+<div class="signature">
+
+<p>
+
+Authorized Signature
+
+</p>
+
+</div>
+
+<!-- ================= FOOTER ================= -->
+
+<footer class="footer">
+
+<hr>
+
+<p><strong>Thank You For Your Business!</strong></p>
+
+<p>Visit Again</p>
+
+</footer>
+
+</div>
+
+<script>
+
+const today = new Date();
+
+document.getElementById("billDate").value =
+today.toISOString().split("T")[0];
+
+document.getElementById("itemDate").value =
+today.toISOString().split("T")[0];
+
+document.getElementById("billNo").value =
+"INV-" + Date.now();
+
+</script>
+
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</body>
+
+</html>
